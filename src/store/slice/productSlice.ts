@@ -31,7 +31,11 @@ const initialState: ProductState = {
 const productSlice = createSlice({
   name: 'products',
   initialState,
-  reducers: {},
+  reducers: {
+    removeProduct: state=>{
+      state.products = []
+    }
+  },
   extraReducers: builder => {
     builder
       .addCase(getProducts.pending, state => {
@@ -94,5 +98,5 @@ const productSlice = createSlice({
  * PayloadAction<{ error: string } | undefined>
  * Eylemin payload türünü belirtir. Bu durumda, { error: string } | undefined yani bir hata mesajı içeren bir nesne ya da undefined'dır türü. 
  */
-
+export const {removeProduct} = productSlice.actions;
 export default productSlice.reducer;

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {FlatList, View} from 'react-native';
 import widgetsStyle from '../styles/widgets/widgetsStyles';
 import WidgetHeader from '../components/ui/widgetHeader';
@@ -9,6 +9,7 @@ import {RootState} from '../store';
 
 const ForYouProducts: React.FC<WidgetProps> = ({item}) => {
   const {products} = useSelector((state: RootState) => state.products);
+  
   return (
     <View style={widgetsStyle.container}>
       <WidgetHeader widgetTitle={item.title} seeAll={false} />
@@ -19,10 +20,7 @@ const ForYouProducts: React.FC<WidgetProps> = ({item}) => {
         data={products}
         renderItem={({item}) => (
           <ProductItem
-            title={item.title}
-            description={item.description}
-            price={item.price}
-            image={item.image}
+            item={item}
           />
         )}
       />

@@ -1,8 +1,8 @@
+import { Product } from "../../store/slice/productSlice";
+
 interface ProductItemProps {
-  title: string;
-  description: string;
-  price: string;
-  image: string;
+  item: Product
+  style?: object
 }
 
 export default ProductItemProps;

@@ -3,25 +3,32 @@ import {Text, StyleSheet, View, Pressable, Image} from 'react-native';
 import ProductItemProps from '../../models/components/productItem';
 import {height, width} from '../../utils/constants';
 import {Colors} from '../../theme/colors';
+import AntDesign from 'react-native-vector-icons/AntDesign';
+import {NavigationProp, useNavigation} from '@react-navigation/native';
+import {Routes} from '../../utils/routes';
+import {RootStackParamList} from '../../models/productList/productListTypes';
 
-const ProductItem: React.FC<ProductItemProps> = ({
-  title,
-  description,
-  price,
-  image,
-}) => {
+const ProductItem: React.FC<ProductItemProps> = ({item, style}) => {
+  const navigation = useNavigation<NavigationProp<RootStackParamList>>();
+
   return (
-    <Pressable style={styles.container}>
+    // dışardan style geliyorsa o uygulansın gelmiyorsa buradaki styles uygulansın.
+    <Pressable
+      style={style ? style : styles.container}
+      onPress={() => navigation.navigate(Routes.PRODUCT_DETAIL, {item: item})}>
       <View style={{justifyContent: 'center', alignItems: 'center'}}>
-        <Image source={{uri: image}} style={styles.image} />
+        <Image source={{uri: item.image}} style={styles.image} />
       </View>
       <Text numberOfLines={2} style={styles.title}>
-        {title.slice(0,12)}
-        <Text style={styles.description}> {description}</Text>
+        {item.title.slice(0, 12)}
+        <Text style={styles.description}> {item.description}</Text>
       </Text>
       <View style={{flex: 1, justifyContent: 'flex-end'}}>
-        <Text style={styles.price}>{price} TL</Text>
+        <Text style={styles.price}>{item.price} TL</Text>
       </View>
+      <Pressable style={styles.favoriteButton}>
+        <AntDesign size={18} color={Colors.Black} name="hearto" />
+      </Pressable>
     </Pressable>
   );
 };
@@ -38,12 +45,11 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     shadowColor: Colors.Black,
     shadowOffset: {
-        width: 0,
-        height: 1.5,
+      width: 0,
+      height: 1.5,
     },
-    shadowOpacity: 0.20,
+    shadowOpacity: 0.2,
     shadowRadius: 1,
-    
     elevation: 2,
   },
   image: {
@@ -66,6 +72,24 @@ const styles = StyleSheet.create({
     color: Colors.Primary,
     marginHorizontal: 10,
     fontWeight: '500',
+  },
+  favoriteButton: {
+    position: 'absolute',
+    right: 5,
+    top: 5,
+    backgroundColor: Colors.White,
+    borderRadius: 50,
+    padding: 5,
+    justifyContent: 'center',
+    alignItems: 'center',
+    shadowColor: Colors.Black,
+    shadowOffset: {
+      width: 0,
+      height: 1,
+    },
+    shadowOpacity: 0.4,
+    shadowRadius: 2.22,
+    elevation: 3,
   },
 });
 

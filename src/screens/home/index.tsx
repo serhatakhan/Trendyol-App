@@ -20,7 +20,6 @@ import { getCategories } from '../../store/actions/categoriesActions';
 
 const Home: React.FC = () => {
   const {selectedCategory} = useSelector((state:RootState)=> state.categories)
-
   const dispatch = useDispatch<AppDispatch>(); // dispatch'in tipi
   
   useEffect(() => {

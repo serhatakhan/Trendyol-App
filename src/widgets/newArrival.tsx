@@ -12,7 +12,7 @@ const NewArrival: React.FC<WidgetProps> = ({item}) => {
 
   return (
     <View style={widgetsStyle.container}>
-      <WidgetHeader widgetTitle={item.title} seeAll={true} />
+      <WidgetHeader widgetTitle={item.title} seeAll={true} category={"electronics"} />
       <FlatList
         style={{marginLeft: 4}}
         horizontal
@@ -20,10 +20,7 @@ const NewArrival: React.FC<WidgetProps> = ({item}) => {
         data={newArrival}
         renderItem={({item}) => (
           <ProductItem
-            title={item.title}
-            description={item.description}
-            price={item.price}
-            image={item.image}
+            item={item}
           />
         )}
       />

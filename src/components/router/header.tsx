@@ -1,12 +1,11 @@
 import React from 'react';
 import {SafeAreaView, StyleSheet, View, Pressable} from 'react-native';
-import {HeaderProps} from '../../models/router';
 import {height, width} from '../../utils/constants';
 import CustomInput from '../ui/customInput';
 import {Colors} from '../../theme/colors';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 
-const Header: React.FC<HeaderProps> = ({icon}) => {
+const Header: React.FC = () => {
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.searchContainer}>
@@ -14,10 +13,10 @@ const Header: React.FC<HeaderProps> = ({icon}) => {
       </View>
       <View style={styles.iconContainer}>
         <Pressable>
-          <FontAwesome size={22} color={Colors.Black} name="envelope-o" />
+          <FontAwesome size={20} color={Colors.Black} name="envelope-o" />
         </Pressable>
         <Pressable style={{backgroundColor: Colors.Primary, padding: 5, borderRadius:50}}>
-          <FontAwesome size={22} color={Colors.White} name="bell-o" />
+          <FontAwesome size={20} color={Colors.White} name="bell-o" />
         </Pressable>
       </View>
     </SafeAreaView>

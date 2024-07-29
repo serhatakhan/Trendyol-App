@@ -1,3 +1,9 @@
+// enum tanımlandığında, TypeScript otomatik olarak her bir enum üyesinin tipini belirler.
+export enum Routes {
+  PRODUCT_DETAIL = 'Ürün Detay',
+  PRODUCT_LIST = 'Ürünler',
+  TAB = 'Trendyol'
+}
 const HOME_SCREEN: string = 'Anasayfa';
 const TRENDYOLGO_SCREEN: string = 'Trendyol GO';
 const FAVORITES_SCREEN: string = 'Favoriler';

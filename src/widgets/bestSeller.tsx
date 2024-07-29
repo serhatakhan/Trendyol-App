@@ -17,7 +17,7 @@ const BestSeller: React.FC<WidgetProps> = ({item}) => {
   return (
     <ImageBackground source={image} style={styles.container} resizeMode="stretch">
       <View style={[widgetsStyle.container, {position: "absolute", backgroundColor: "transparent"}]}>
-        <WidgetHeader widgetTitle={item.title} seeAll={true} color={Colors.White} />
+        <WidgetHeader widgetTitle={item.title} seeAll={true} color={Colors.White} category={"jewelery"} />
         <FlatList
           style={{marginLeft: 4}}
           horizontal
@@ -25,10 +25,7 @@ const BestSeller: React.FC<WidgetProps> = ({item}) => {
           data={bestSeller}
           renderItem={({item}) => (
             <ProductItem
-              title={item.title}
-              description={item.description}
-              price={item.price}
-              image={item.image}
+              item={item}
             />
           )}
         />
