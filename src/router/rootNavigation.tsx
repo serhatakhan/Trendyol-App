@@ -20,9 +20,7 @@ const RootNavigation: React.FC = () => {
       <Stack.Screen
         name={Routes.TAB}
         component={TabNavigation}
-        options={{
-          header: () => <Header />,
-        }}
+        options={{headerShown: false}}
       />
       <Stack.Screen name={Routes.PRODUCT_DETAIL} component={ProductDetail} />
       <Stack.Screen name={Routes.PRODUCT_LIST} component={ProductList} />

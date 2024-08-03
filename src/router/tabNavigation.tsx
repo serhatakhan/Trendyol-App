@@ -13,25 +13,51 @@ import {
   TRENDYOLGO_SCREEN,
 } from '../utils/routes';
 import TabIcon from '../components/router/tabIcon';
-import { Colors } from '../theme/colors';
+import {Colors} from '../theme/colors';
+import {useSelector} from 'react-redux';
+import {RootState} from '../store';
+import Header from '../components/router/header';
+import { Text } from 'react-native';
 
 const Tab = createBottomTabNavigator();
 
 const TabNavigation: React.FC = () => {
+  // state'deki cartların uzunluğunu alığ değişkene at
+  const quantity = useSelector(
+    (state: RootState) => state?.carts?.carts,
+  )?.length;
+
   return (
     <Tab.Navigator
       screenOptions={({route}) => ({
-        headerShown: false,
+        headerShown: true,
         tabBarIcon: ({focused, color, size}) => (
-          <TabIcon focused={focused} color={color} size={size} name={route.name} />
+          <TabIcon
+            focused={focused}
+            color={color}
+            size={size}
+            name={route.name}
+          />
         ),
         tabBarActiveTintColor: Colors.Primary,
         tabBarInactiveTintColor: Colors.Silver,
       })}>
-      <Tab.Screen name={HOME_SCREEN} component={Home} />
+      <Tab.Screen name={HOME_SCREEN} component={Home} options={{
+        header: ()=> <Header />
+      }} />
       <Tab.Screen name={TRENDYOLGO_SCREEN} component={TrendyolGo} />
       <Tab.Screen name={FAVORITES_SCREEN} component={Favorites} />
-      <Tab.Screen name={CART_SCREEN} component={Cart} />
+      <Tab.Screen
+        name={CART_SCREEN}
+        component={Cart}
+        options={{
+          tabBarBadge: quantity,
+          tabBarBadgeStyle: {left: 5, fontWeight: '500', fontSize: 13, backgroundColor: Colors.Primary},
+          headerTitle: ()=> (
+            <Text style={{fontWeight: "500", fontSize: 17, color: Colors.Black}}>Sepetim</Text>
+          )
+        }}
+      />
       <Tab.Screen name={PROFILE_SCREEN} component={Profile} />
     </Tab.Navigator>
   );

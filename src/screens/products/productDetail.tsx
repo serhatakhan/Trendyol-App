@@ -51,9 +51,9 @@ const ProductDetail: React.FC<ProductDetailProps> = ({route}) => {
               </Text>
             </View>
             {/* seller */}
-            <Seller />
+            <Seller item={item} />
             {/* select seller */}
-            <SelectSeller />
+            <SelectSeller item={item} />
             {/* add list */}
             <View style={styles.addList}>
               <Pressable style={styles.addListContainer}>

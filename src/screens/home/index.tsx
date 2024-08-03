@@ -17,6 +17,7 @@ import {useDispatch, useSelector} from 'react-redux';
 import {getBestSellerProducts, getNewArrivalProducts, getProducts} from '../../store/actions/productActions';
 import { AppDispatch, RootState } from '../../store';
 import { getCategories } from '../../store/actions/categoriesActions';
+import { getCarts } from '../../store/actions/cartsActions';
 
 const Home: React.FC = () => {
   const {selectedCategory} = useSelector((state:RootState)=> state.categories)
@@ -26,6 +27,7 @@ const Home: React.FC = () => {
     dispatch(getBestSellerProducts({limit:5}));
     dispatch(getNewArrivalProducts({limit:5, sort:"desc"}));
     dispatch(getCategories())
+    dispatch(getCarts({userId:2}))
   }, []);
   useEffect(() => {
     dispatch(getProducts({category: selectedCategory}));

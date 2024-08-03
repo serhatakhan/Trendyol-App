@@ -1,14 +1,19 @@
 import React from 'react';
-import {Text, StyleSheet, View} from 'react-native';
+import {Text, StyleSheet, View, Alert} from 'react-native';
 import CustomButton from './customButton';
 import { Colors } from '../../theme/colors';
 import { Product } from '../../store/slice/productSlice';
+import { useDispatch } from 'react-redux';
+import { AppDispatch } from '../../store';
+import { updateCarts } from '../../store/actions/cartsActions';
 
 interface ProductDetailFooterProps {
     item: Product
 }
 
 const ProductDetailFooter: React.FC<ProductDetailFooterProps> = ({item}) => {
+  const dispatch = useDispatch<AppDispatch>()
+
   return (
     <View style={styles.footerContainer}>
       <View style={styles.footerPrice}>
@@ -25,6 +30,11 @@ const ProductDetailFooter: React.FC<ProductDetailFooterProps> = ({item}) => {
           title="Sepete Ekle"
           bg={Colors.Primary}
           text={Colors.White}
+          onPress={()=> dispatch(updateCarts({
+            userId: 2,
+            date: "2019-12-10",
+            products: [{productId: item.id, quantity: 1}]
+          }))}
         />
       </View>
     </View>

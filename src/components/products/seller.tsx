@@ -4,12 +4,17 @@ import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import Entypo from 'react-native-vector-icons/Entypo';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import {Colors} from '../../theme/colors';
+import { Product } from '../../store/slice/productSlice';
 
-const Seller: React.FC = () => {
+interface SellerProps {
+  item: Product
+}
+
+const Seller: React.FC<SellerProps> = ({item}) => {
   return (
     <View style={styles.container}>
       <View style={styles.wrapper}>
-        <Text style={{fontSize: 13}}>4.5</Text>
+        <Text style={{fontSize: 13}}>{item?.rating?.rate}</Text>
         <View style={{flexDirection: 'row', gap: 2}}>
           <FontAwesome size={13} color={Colors.Primary} name="star" />
           <FontAwesome size={13} color={Colors.Primary} name="star" />

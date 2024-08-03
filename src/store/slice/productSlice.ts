@@ -10,6 +10,8 @@ export interface Product {
   category: string;
   description: string;
   image: string;
+  rating?: any
+  rate?: number
 }
 // ürünlerin state'lerinin tipi
 interface ProductState {

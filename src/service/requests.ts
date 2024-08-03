@@ -13,3 +13,8 @@ export async function getRequest<T>(URL: string, params: object): Promise<AxiosR
   return res;
 }
 
+export async function putRequest<T>(URL: string, params: object): Promise<AxiosResponse<T>> {
+  const res: AxiosResponse<T> = await Client.put(URL, params );
+  return res;
+}
+

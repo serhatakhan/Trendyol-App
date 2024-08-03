@@ -3,8 +3,13 @@ import {Text, StyleSheet, View} from 'react-native';
 import Entypo from 'react-native-vector-icons/Entypo';
 import {Colors} from '../../theme/colors';
 import Feather from 'react-native-vector-icons/Feather';
+import { Product } from '../../store/slice/productSlice';
 
-const SelectSeller: React.FC = () => {
+interface SelectSellerProps {
+  item: Product
+}
+
+const SelectSeller: React.FC<SelectSellerProps> = ({item}) => {
   return (
     <View
       style={styles.container}>
@@ -13,7 +18,7 @@ const SelectSeller: React.FC = () => {
           Seçili Satıcı:
         </Text>
         <Text style={{fontSize: 13, color: '#4169E1', fontWeight: '500'}}>
-          D'S DAMAT
+          {item.title.slice(0,10)}
         </Text>
         <View
           style={{
@@ -31,7 +36,7 @@ const SelectSeller: React.FC = () => {
             paddingHorizontal: 4,
             borderRadius: 5,
           }}>
-          <Text style={{fontSize: 12, color: Colors.White}}>8.4</Text>
+          <Text style={{fontSize: 12, color: Colors.White}}>{item.rating.rate}</Text>
         </View>
       </View>
 
