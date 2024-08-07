@@ -2,18 +2,12 @@
 export enum Routes {
   PRODUCT_DETAIL = 'Ürün Detay',
   PRODUCT_LIST = 'Ürünler',
-  TAB = 'Trendyol'
+  TAB = 'Trendyol',
+  HOME_SCREEN = 'Anasayfa',
 }
-const HOME_SCREEN: string = 'Anasayfa';
 const TRENDYOLGO_SCREEN: string = 'Trendyol GO';
-const FAVORITES_SCREEN: string = 'Favoriler';
+const FAVORITES_SCREEN: string = 'Favorilerim';
 const CART_SCREEN: string = 'Sepetim';
 const PROFILE_SCREEN: string = 'Hesabım';
 
-export {
-  HOME_SCREEN,
-  TRENDYOLGO_SCREEN,
-  FAVORITES_SCREEN,
-  CART_SCREEN,
-  PROFILE_SCREEN,
-};
+export {TRENDYOLGO_SCREEN, FAVORITES_SCREEN, CART_SCREEN, PROFILE_SCREEN};

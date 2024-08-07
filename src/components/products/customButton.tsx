@@ -15,7 +15,7 @@ const styles = StyleSheet.create({
   container: {
     borderWidth: 1.1,
     borderColor: Colors.Primary,
-    padding: 15,
+    padding: 13,
     paddingHorizontal: 25,
     borderRadius: 4
   },

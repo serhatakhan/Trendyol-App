@@ -1,10 +1,7 @@
 import React from 'react'
 import { SafeAreaView, Text, StyleSheet } from 'react-native'
-import { RouteType } from '../routes/RouteType'
 
-type Props = RouteType<'index'>
-
-const Profile: React.FC<Props> = ({ navigation, route }) => {
+const Profile: React.FC = () => {
     return (
         <SafeAreaView style={styles.container}>
             <Text style={{ fontSize: 30 }}> Profile </Text>

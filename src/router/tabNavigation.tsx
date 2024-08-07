@@ -8,8 +8,8 @@ import Profile from '../screens/profile';
 import {
   CART_SCREEN,
   FAVORITES_SCREEN,
-  HOME_SCREEN,
   PROFILE_SCREEN,
+  Routes,
   TRENDYOLGO_SCREEN,
 } from '../utils/routes';
 import TabIcon from '../components/router/tabIcon';
@@ -42,7 +42,7 @@ const TabNavigation: React.FC = () => {
         tabBarActiveTintColor: Colors.Primary,
         tabBarInactiveTintColor: Colors.Silver,
       })}>
-      <Tab.Screen name={HOME_SCREEN} component={Home} options={{
+      <Tab.Screen name={Routes.HOME_SCREEN} component={Home} options={{
         header: ()=> <Header />
       }} />
       <Tab.Screen name={TRENDYOLGO_SCREEN} component={TrendyolGo} />

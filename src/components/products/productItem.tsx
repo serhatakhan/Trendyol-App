@@ -7,9 +7,25 @@ import AntDesign from 'react-native-vector-icons/AntDesign';
 import {NavigationProp, useNavigation} from '@react-navigation/native';
 import {Routes} from '../../utils/routes';
 import {RootStackParamList} from '../../models/productList/productListTypes';
+import { useDispatch, useSelector } from 'react-redux';
+import { AppDispatch, RootState } from '../../store';
+import { addFavorite, removeFavorite } from '../../store/slice/favoritesSlice';
 
 const ProductItem: React.FC<ProductItemProps> = ({item, style}) => {
   const navigation = useNavigation<NavigationProp<RootStackParamList>>();
+  const dispatch = useDispatch<AppDispatch>();
+  
+  const favorites = useSelector((state: RootState) => state.favorites.favorites);
+  // isFavorite değişkeni ile ürünün favorilerde olup olmadığını kontrol ediyoruz. buna göre kalbin koşulunu yazıyoruz
+  const isFavorite = favorites.some(favorite => favorite.id === item.id);
+
+  const handleFavoritePress = () => {
+    if (isFavorite) {
+      dispatch(removeFavorite(item.id));
+    } else {
+      dispatch(addFavorite(item));
+    }
+  };
 
   return (
     // dışardan style geliyorsa o uygulansın gelmiyorsa buradaki styles uygulansın.
@@ -26,8 +42,8 @@ const ProductItem: React.FC<ProductItemProps> = ({item, style}) => {
       <View style={{flex: 1, justifyContent: 'flex-end'}}>
         <Text style={styles.price}>{item.price} TL</Text>
       </View>
-      <Pressable style={styles.favoriteButton}>
-        <AntDesign size={18} color={Colors.Black} name="hearto" />
+      <Pressable style={styles.favoriteButton} onPress={handleFavoritePress}>
+        <AntDesign size={18} color={isFavorite ? Colors.Primary : Colors.Black} name={isFavorite ? "heart" : "hearto"} />
       </Pressable>
     </Pressable>
   );
