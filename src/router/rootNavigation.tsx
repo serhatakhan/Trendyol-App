@@ -7,6 +7,7 @@ import ProductDetail from '../screens/products/productDetail';
 import ProductList from '../screens/products/productList';
 import {RootStackParamList} from '../models/productList/productListTypes';
 import HeaderProductRoute from '../components/router/headerProductRoutes';
+import Login from '../screens/auth/login';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
@@ -17,13 +18,14 @@ const RootNavigation: React.FC = () => {
         headerShown: true,
         header: () => <HeaderProductRoute />,
       }}>
-      <Stack.Screen
-        name={Routes.TAB}
-        component={TabNavigation}
+      <Stack.Screen name={Routes.TAB} component={TabNavigation}
         options={{headerShown: false}}
       />
       <Stack.Screen name={Routes.PRODUCT_DETAIL} component={ProductDetail} />
       <Stack.Screen name={Routes.PRODUCT_LIST} component={ProductList} />
+      <Stack.Screen name={Routes.LOGIN} component={Login}
+        options={{headerShown: false}}
+      />
     </Stack.Navigator>
   );
 };

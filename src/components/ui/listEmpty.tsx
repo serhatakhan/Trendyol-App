@@ -8,6 +8,7 @@ import { ListEmptyComponentProps } from '../../models/components/listEmpty';
 const ListEmpty: React.FC<ListEmptyComponentProps> = ({
   icon,
   title,
+  btnTitle,
   description,
   onPress,
 }) => {
@@ -15,12 +16,12 @@ const ListEmpty: React.FC<ListEmptyComponentProps> = ({
     <View style={styles.container}>
       <View style={{justifyContent: 'center', flex: 5}}>
         <View style={styles.icon}>{icon}</View>
-        <Text style={styles.title}>Favori İlk Ürününü Ekle</Text>
+        <Text style={styles.title}>{title}</Text>
         <Text style={styles.description}>{description}</Text>
       </View>
       <View style={styles.button}>
         <CustomButton
-          title={title}
+          title={btnTitle}
           onPress={onPress}
           bg={Colors.Primary}
           text={Colors.White}
@@ -59,7 +60,7 @@ const styles = StyleSheet.create({
     fontWeight: '600',
   },
   description: {
-    fontSize: 14,
+    fontSize: 15,
     textAlign: 'center',
     color: Colors.Gray,
     marginVertical: 20,

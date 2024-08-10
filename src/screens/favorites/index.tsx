@@ -20,7 +20,8 @@ const Favorites: React.FC = () => {
       <FlatList
         ListEmptyComponent={
           <ListEmpty
-            title="Alışverişe Devam Et"
+            title="Favori İlk Ürününü Ekle"
+            btnTitle='Alışverişe Devam Et'
             description="Beğendiğin ürünü favorilerine ekle, fiyatlarını takip et."
             icon={<AntDesign size={50} color={Colors.Primary} name={'heart'} />}
             onPress={()=> navigation.navigate(Routes.HOME_SCREEN)}

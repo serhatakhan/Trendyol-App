@@ -4,6 +4,7 @@ export enum Routes {
   PRODUCT_LIST = 'Ürünler',
   TAB = 'Trendyol',
   HOME_SCREEN = 'Anasayfa',
+  LOGIN = 'Giriş Yap',
 }
 const TRENDYOLGO_SCREEN: string = 'Trendyol GO';
 const FAVORITES_SCREEN: string = 'Favorilerim';

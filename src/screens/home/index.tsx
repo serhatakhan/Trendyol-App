@@ -27,7 +27,7 @@ const Home: React.FC = () => {
     dispatch(getBestSellerProducts({limit:5}));
     dispatch(getNewArrivalProducts({limit:5, sort:"desc"}));
     dispatch(getCategories())
-    dispatch(getCarts({userId:2}))
+    // dispatch(getCarts({userId:2}))
   }, []);
   useEffect(() => {
     dispatch(getProducts({category: selectedCategory}));

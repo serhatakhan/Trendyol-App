@@ -8,7 +8,7 @@ const HeaderProductRoute: React.FC = () => {
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.searchContainer}>
-        <CustomInput placeholder="İşte Aradığın Ürünler" name='arrow-left' />
+        <CustomInput placeholder="İşte Aradığın Ürünler" name='arrow-left' showIcon={true} />
       </View>
     </SafeAreaView>
   );

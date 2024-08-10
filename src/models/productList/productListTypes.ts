@@ -7,6 +7,7 @@ type RootStackParamList = {
   [Routes.PRODUCT_LIST]: {category: string};
   [Routes.TAB]: undefined; // Parametre gerekmiyorsa 'undefined'
   [Routes.HOME_SCREEN]: undefined; // Parametre gerekmiyorsa 'undefined'
+  [Routes.LOGIN]: undefined;
 };
 
 // productList ekranı için route türünü belirle

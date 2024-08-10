@@ -9,7 +9,7 @@ const Header: React.FC = () => {
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.searchContainer}>
-        <CustomInput placeholder="Marka, ürün veya kategori ara" />
+        <CustomInput placeholder="Marka, ürün veya kategori ara" showIcon={true} />
       </View>
       <View style={styles.iconContainer}>
         <Pressable>
