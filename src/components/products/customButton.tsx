@@ -1,12 +1,16 @@
 import React from 'react';
-import {Text, StyleSheet, Pressable} from 'react-native';
+import {Text, StyleSheet, Pressable, ActivityIndicator} from 'react-native';
 import { Colors } from '../../theme/colors';
 import { CustomButtonProps } from '../../models/components/button';
 
-const CustomButton: React.FC<CustomButtonProps> = ({title, bg, text, onPress}) => {
+const CustomButton: React.FC<CustomButtonProps> = ({title, bg, text, onPress, pending}) => {
   return (
     <Pressable onPress={onPress} style={[styles.container, bg ? {backgroundColor: bg} : styles.container]}>
-      <Text style={[styles.text, text ? {color: text} : styles.text ]}>{title}</Text>
+      {pending ? (
+        <ActivityIndicator size={"small"} color={Colors.White} />
+      ) : (
+        <Text style={[styles.text, text ? {color: text} : styles.text ]}>{title}</Text>
+      )}
     </Pressable>
   );
 };

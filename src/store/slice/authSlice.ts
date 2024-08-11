@@ -1,40 +1,72 @@
 import {createSlice} from '@reduxjs/toolkit';
 import type {PayloadAction} from '@reduxjs/toolkit';
-import {LoginResponse, loginUser} from '../actions/authActions';
+import {
+  getUserInfo,
+  LoginResponse,
+  loginUser,
+  logOutUser,
+} from '../actions/authActions';
+import { AuthTypes, UserInfo } from '../../models/slices/authSliceTypes';
 
-interface AuthTypes {
-  token: string;
-  isLogin: boolean;
-  pending: boolean;
-  error: string | object;
-}
 const initialState: AuthTypes = {
   token: '',
   isLogin: false,
   pending: false,
   error: {},
+  userInfo: null,
 };
 
 const authSlice = createSlice({
   name: 'auth',
   initialState,
-  reducers: {},
+  reducers: {
+    userLoginCheck: (state, action) => {
+      state.token = action.payload;
+      if (action.payload) state.isLogin = true;
+    },
+    // logOutUser: (state, action) => {
+    //   state.isLogin = false
+    //   state.token = ''
+    //   AsyncStorage.removeItem('token')
+    // } ACTION YAZMAK YERİNE BÖYLE DE YAPABİLİRDİK !!!
+  },
   extraReducers: builder => {
     builder
       .addCase(loginUser.pending, state => {
         state.pending = true;
       })
-      .addCase(loginUser.fulfilled, (state, action: PayloadAction<LoginResponse>) => {
-        state.token = action.payload.token;
-        state.pending = false;
-        state.isLogin = true;
-      })
+      .addCase(
+        loginUser.fulfilled,
+        (state, action: PayloadAction<LoginResponse>) => {
+          state.token = action.payload.token;
+          state.pending = false;
+          state.isLogin = true;
+        },
+      )
       .addCase(loginUser.rejected, (state, action) => {
         // action.error.message içinde hata mesajı bulunabilir
+        state.error = action.error.message || 'Unknown error';
+        state.pending = false;
+      })
+
+      .addCase(logOutUser.fulfilled, state => {
+        state.isLogin = false;
+        state.token = '';
+      })
+
+      .addCase(getUserInfo.pending, state => {
+        state.pending = true;
+      })
+      .addCase(getUserInfo.fulfilled, (state, action: PayloadAction<UserInfo>) => {
+        state.userInfo = action.payload;
+        state.pending = false;
+      })
+      .addCase(getUserInfo.rejected, (state, action) => {
         state.error = action.error.message || 'Unknown error';
         state.pending = false;
       });
   },
 });
 
+export const {userLoginCheck} = authSlice.actions;
 export default authSlice.reducer;

@@ -65,7 +65,7 @@ const Login: React.FC = () => {
         />
       </View>
       <Formik
-        initialValues={{username: 'mor_2314', password: '83r5^_'}}
+        initialValues={{username: 'johnd', password: 'm38rmF$'}}
         validationSchema={loginSchema}
         onSubmit={values => dispatch(loginUser(values))}
       >
@@ -97,7 +97,7 @@ const Login: React.FC = () => {
                 <CustomButton
                   bg={Colors.Primary}
                   text={Colors.White}
-                  // pending={pending}
+                  pending={pending}
                   title="Giriş Yap"
                   onPress={handleSubmit}
                 />

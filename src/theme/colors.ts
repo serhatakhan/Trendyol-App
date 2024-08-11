@@ -8,6 +8,7 @@ interface ColorsType {
   Gray: string;
   LightGray: string;
   Platinium: string;
+  Blue: string;
 }
 
 export const Colors: ColorsType = {
@@ -20,4 +21,5 @@ export const Colors: ColorsType = {
   Gray: 'gray',
   LightGray: 'lightgray',
   Platinium: '#E5E4E2',
+  Blue: '#764EE0',
 };

@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useEffect } from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import TabNavigation from './tabNavigation';
 import Header from '../components/router/header';
@@ -8,10 +8,31 @@ import ProductList from '../screens/products/productList';
 import {RootStackParamList} from '../models/productList/productListTypes';
 import HeaderProductRoute from '../components/router/headerProductRoutes';
 import Login from '../screens/auth/login';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { useDispatch } from 'react-redux';
+import { AppDispatch } from '../store';
+import { userLoginCheck } from '../store/slice/authSlice';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
 const RootNavigation: React.FC = () => {
+  const dispatch = useDispatch<AppDispatch>()
+  // authActions'da hesaba giriş yaparken storage'a kaydettiğimiz token'ı al.
+  const getToken = async () => {
+    try {
+      const value = await AsyncStorage.getItem('token');
+      if (value !== null) {
+        dispatch(userLoginCheck(value))
+      }
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+  useEffect(() => {
+    getToken()
+  }, [])
+
   return (
     <Stack.Navigator
       screenOptions={{

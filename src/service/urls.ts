@@ -7,3 +7,4 @@ export const CATEGORIES_URL: string = 'products/categories';
 export const CARTS_URL: string = 'carts/user/';
 export const CART_URL: string = 'carts/';
 export const LOGIN_URL: string = 'auth/login';
+export const USER_URL: string = 'users';
