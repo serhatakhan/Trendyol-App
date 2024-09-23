@@ -10,6 +10,7 @@ import {RootStackParamList} from '../../models/productList/productListTypes';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from '../../store';
 import { addFavorite, removeFavorite } from '../../store/slice/favoritesSlice';
+import FastImage from 'react-native-fast-image'
 
 const ProductItem: React.FC<ProductItemProps> = ({item, style}) => {
   const navigation = useNavigation<NavigationProp<RootStackParamList>>();
@@ -33,7 +34,13 @@ const ProductItem: React.FC<ProductItemProps> = ({item, style}) => {
       style={style ? style : styles.container}
       onPress={() => navigation.navigate(Routes.PRODUCT_DETAIL, {item: item})}>
       <View style={{justifyContent: 'center', alignItems: 'center'}}>
-        <Image source={{uri: item.image}} style={styles.image} />
+        <FastImage source={{
+          uri: item.image, 
+          priority: "high", 
+          cache: "web"}} // burada dinamik bir yapı var. çünkü bu imageler değişebilir. o yüzden cache: web yaptık
+        resizeMode={FastImage.resizeMode.contain}
+        // defaultSource={require("../../assets/..")} -> resimler yüklenmeden önce lokalden bir resim göstermek istediğimizde
+        style={styles.image} />
       </View>
       <Text numberOfLines={2} style={styles.title}>
         {item.title.slice(0, 12)}
@@ -71,7 +78,6 @@ const styles = StyleSheet.create({
   image: {
     width: width * 0.3,
     height: height * 0.15,
-    resizeMode: 'contain',
   },
   title: {
     fontSize: 14,

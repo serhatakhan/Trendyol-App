@@ -1,7 +1,8 @@
 import React from 'react';
-import {View, Text, StyleSheet, Image} from 'react-native';
+import {View, Text, StyleSheet} from 'react-native';
 import {Introduction, width} from '../../utils/constants';
 import {Colors} from '../../theme/colors';
+import FastImage from 'react-native-fast-image'
 
 interface IntroductionListItemProp {
   item: Introduction; // dizi olmadığı için sonundan [] bunu kaldırdık
@@ -11,8 +12,11 @@ const IntroductionListItem: React.FC<IntroductionListItemProp> = ({item}) => {
   return (
     <View style={styles.itemContainer}>
       <View style={styles.imageContainer}>
-        <Image
-          source={{uri: item.image}}
+        <FastImage
+          source={{
+            uri: item.image, 
+            priority: 'normal', 
+            cache: 'cacheOnly'}} // resimler zaten lokalimizde olduğu için ağ isteğinde bulunmadan proje yüklendiğinde cache'den alsın diyoruz.
           style={styles.image}
         />
       </View>

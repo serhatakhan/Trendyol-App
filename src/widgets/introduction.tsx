@@ -1,9 +1,10 @@
 import React from 'react';
-import {Image, StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, Text, View} from 'react-native';
 import widgetsStyle from '../styles/widgets/widgetsStyles';
 import Swiper from 'react-native-swiper';
 import {height, introductionImg, width} from '../utils/constants';
 import IntroductionList from '../components/home/introductionList';
+import FastImage from 'react-native-fast-image'
 
 const Introduction: React.FC = () => {
   const renderPagination = (index: number, total: number) => {
@@ -29,10 +30,13 @@ const Introduction: React.FC = () => {
             <View
               key={item.id}
               style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-              <Image
-                source={{uri: item.image}} // url kullandığımız için uri
-                resizeMode="cover"
+              <FastImage
+                source={{
+                  uri: item.image, 
+                  priority: 'normal', 
+                  cache: 'cacheOnly'}} // herhangi bir ağ isteğinde bulunmayacak. sadece cache'den gelen görüntüleri gösterecek. bu resimler zaten bizim lokalimizden geliyor.
                 style={{flex: 1, width: width - 16, borderRadius: 5}}
+                resizeMode={FastImage.resizeMode.cover}
               />
             </View>
           ))}
