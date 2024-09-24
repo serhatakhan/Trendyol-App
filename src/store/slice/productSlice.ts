@@ -100,5 +100,6 @@ const productSlice = createSlice({
  * PayloadAction<{ error: string } | undefined>
  * Eylemin payload türünü belirtir. Bu durumda, { error: string } | undefined yani bir hata mesajı içeren bir nesne ya da undefined'dır türü. 
  */
+// pendingleri kapatırsak eğer, onların kullanıldığı componentlerde state daha az değişeceğinden o componentler daha az render edillmiş olacak.
 export const {removeProduct} = productSlice.actions;
 export default productSlice.reducer;

@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import {
   SafeAreaView,
   Text,
@@ -13,25 +13,8 @@ import BestSeller from '../../widgets/bestSeller';
 import Introduction from '../../widgets/introduction';
 import NewArrival from '../../widgets/newArrival';
 import {Widget} from '../../models/widgets/widget';
-import {useDispatch, useSelector} from 'react-redux';
-import {getBestSellerProducts, getNewArrivalProducts, getProducts} from '../../store/actions/productActions';
-import { AppDispatch, RootState } from '../../store';
-import { getCategories } from '../../store/actions/categoriesActions';
-import { getCarts } from '../../store/actions/cartsActions';
 
 const Home: React.FC = () => {
-  const {selectedCategory} = useSelector((state:RootState)=> state.categories)
-  const dispatch = useDispatch<AppDispatch>(); // dispatch'in tipi
-  
-  useEffect(() => {
-    dispatch(getBestSellerProducts({limit:5}));
-    dispatch(getNewArrivalProducts({limit:5, sort:"desc"}));
-    dispatch(getCategories())
-    // dispatch(getCarts({userId:2}))
-  }, []);
-  useEffect(() => {
-    dispatch(getProducts({category: selectedCategory}));
-  }, [selectedCategory])
 
   // * ListRenderItemInfo: renderItem fonksiyonuna geçirilen PARAMETRELERİN TÜRÜNÜ tanımlar.
   // * ListRenderItem: renderItem prop'u için kullanılan FONKSİYONUN TÜRÜNÜ tanımlar. Bu tür, öğe tipi ve fonksiyonun dönüş türünü içerir.
@@ -70,3 +53,7 @@ const styles = StyleSheet.create({
 });
 
 export default Home;
+// * bu component birden çok istek sonucu state'de değişiklik olduğu için rerender ediliyor(3 kez).
+// * bunu engellemek için yani bu bileşenin gereksiz yere render edilmesini önlemek için 
+// memo kullandık. ancak bu bileşenin yapısı gereği state çok defa güncellenmesi gerektiği
+// için, bu bileşende kullanmak bize fayda sağlamayacak. yine birden çok kez render edilecek bu component.

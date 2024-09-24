@@ -1,14 +1,19 @@
-import React from 'react';
+import React, { memo, useEffect } from 'react';
 import {FlatList, View} from 'react-native';
 import WidgetHeader from '../components/ui/widgetHeader';
 import widgetsStyle from '../styles/widgets/widgetsStyles';
-import {useSelector} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import ProductItem from '../components/products/productItem';
-import { RootState } from '../store';
+import { AppDispatch, RootState } from '../store';
 import { WidgetProps } from '../models/widgets/widget';
+import { getNewArrivalProducts } from '../store/actions/productActions';
 
 const NewArrival: React.FC<WidgetProps> = ({item}) => {
   const {newArrival} = useSelector((state:RootState) => state.products);  
+  const dispatch = useDispatch<AppDispatch>();
+  useEffect(() => {
+    dispatch(getNewArrivalProducts({limit:5, sort:"desc"}));
+  }, [])
 
   return (
     <View style={widgetsStyle.container}>
@@ -28,4 +33,4 @@ const NewArrival: React.FC<WidgetProps> = ({item}) => {
   );
 };
 
-export default NewArrival;
+export default memo(NewArrival); // rerenderın önüne geçmek için
